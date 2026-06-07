@@ -81,7 +81,6 @@ button {
     cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
-    width: 100%;
 }
 
 button:hover {
@@ -102,4 +101,22 @@ label {
     display: block;
     margin: 15px 0 8px;
     font-weight: bold;
+}
+
+/* Estilos extras para login (caso use) */
+.alert {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.erro {
+    background: #ffe5e5;
+    color: #d10000;
+}
+
+.sucesso {
+    background: #e8ffe8;
+    color: #0f7a0f;
 }
