@@ -12,7 +12,7 @@ if (!isset($musicaAtual)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliar - <?= htmlspecialchars($musicaAtual['nome']) ?></title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <div class="container" style="max-width: 600px;">
@@ -28,7 +28,7 @@ if (!isset($musicaAtual)) {
                 <input type="hidden" name="musica_id" value="<?= $musicaAtual['id'] ?>">
 
                 <label><strong>Escolha sua nota (1 a 5):</strong></label>
-                <select name="nota" id="nota" required style="width: 100%; padding: 14px; font-size: 16px; border-radius: 10px; margin: 10px 0;">
+                <select name="nota" required>
                     <option value="">-- Selecione a nota --</option>
                     <option value="1">⭐ Nota 1 - Péssima</option>
                     <option value="2">⭐⭐ Nota 2 - Ruim</option>
