@@ -61,7 +61,7 @@ $avaliacaoModel = new AvaliacaoModel();
                     <?php endif; ?>
                 </div>
                 
-                <a href="avaliar.php?id=<?= $musica['ID_MUSICA'] ?>">
+                <a href="/SpotiPobre/avaliar.php?id=<?= $musica['ID_MUSICA'] ?>">
                     <button>Avaliar Música</button>
                 </a>
             </div>
