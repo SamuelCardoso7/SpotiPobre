@@ -21,7 +21,6 @@ $avaliacaoModel = new AvaliacaoModel();
         <div class="header">
             <h1>SpotiPobre</h1>
             
-            <!-- Botão Logout no header -->
             <div style="position: absolute; top: 20px; right: 30px;">
                 <a href="./views/login.php" style="text-decoration: none;">
                     <button style="background: #dc3545; padding: 8px 16px; font-size: 14px;">Sair</button>
@@ -30,11 +29,10 @@ $avaliacaoModel = new AvaliacaoModel();
         </div>
 
         <div class="content">
-            
-            <!-- Botão Cadastrar Música -->
+
             <div style="text-align: right; margin-bottom: 25px;">
-                <a href="cadastrar_musica.php">
-                    <button>+ Minhas Músicas</button>
+                <a href="./views/MinhasMusicas.php">
+                    <button  style="background: #3835dc; padding: 8px 16px; font-size: 14px;">Minhas Músicas</button>
                 </a>
             </div>
 

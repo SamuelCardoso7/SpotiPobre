@@ -1,45 +1,21 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['id'])) {
-    header("Location: ./views/login.php");
-    exit();
-}
-
-require_once '../controllers/CadastrarMusicaController.php';
-
-$controller = new MusicasController();
-$controller->CadastrarMusica();
-
-?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - SpotiPobre</title>
-
+    <title>SpotiPobre - Dashboard</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
-
-<body>
+<form method="POST">
     <div class="container">
-    <a href="../index.php">
-        Início
-    </a>
-    <a href="MinhasMusicas.php">
-        Voltar
-    </a>
+        <h1>Cadastrar Música</h1>
+        <div style="position: absolute; top: 20px; right: 30px;">
+            <a href="../index.php">Voltar</a>
+        </div>
+        <label><strong>Nome</strong></label>
+        <input type="text" name="nome" required>
 
-    <form method="POST">
-        <label class="">Nome</label>
-        <input type="text" name="nomeMusica" placeholder="Nome">
-        <label class="">Descrição</label>
-        <input type="text" name="descMusica" placeholder="Descrição">
-        <button type="submit">Enviar</button>
-    </form>
+        <label><strong>Descrição</strong></label>
+
+        <textarea name="descricao"></textarea>
+        <button type="submit"> Cadastrar </button>
     </div>
-</body>
-
-</html>
+</form>

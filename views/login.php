@@ -4,7 +4,7 @@ session_start();
 require_once __DIR__ . '/../controllers/AuthController.php';
 
 $auth = new AuthController();
-$auth->login(); // processa POST
+$auth->login();
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,6 @@ $auth->login(); // processa POST
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - SpotiPobre</title>
 
-    <!-- CSS (mais seguro com __DIR na prática seria no PHP, mas aqui ok) -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
 

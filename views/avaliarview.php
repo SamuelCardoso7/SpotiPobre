@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// segurança básica
 if (!isset($musicaAtual)) {
     header('Location: /SpotiPobre/index.php');
     exit;
@@ -28,18 +27,14 @@ if (!isset($musicaAtual)) {
 
     <div style="padding: 40px;">
 
-        <!-- NOME DA MÚSICA -->
         <h2><?= htmlspecialchars($musicaAtual['NOME']) ?></h2>
 
-        <!-- DESCRIÇÃO -->
         <p style="color: #555; margin-bottom: 25px;">
             <?= htmlspecialchars($musicaAtual['DESCRICAO'] ?? 'Sem descrição') ?>
         </p>
 
-        <!-- FORMULÁRIO -->
         <form action="/SpotiPobre/salvar_avaliacao.php" method="POST">
 
-            <!-- ID DA MÚSICA -->
             <input type="hidden" name="musica_id" value="<?= $musicaAtual['ID_MUSICA'] ?>">
 
             <label><strong>Escolha sua nota (1 a 5):</strong></label>
