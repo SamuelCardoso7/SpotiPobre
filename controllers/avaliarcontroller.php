@@ -19,7 +19,6 @@ class AvaliarController
             }
         }
 
-        // Se não encontrou, volta pro dashboard
         if (!$musicaAtual) {
             header('Location: index.php');
             exit;
