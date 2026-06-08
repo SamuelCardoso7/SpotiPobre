@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-require_once '../controllers/AuthController.php';
+require_once __DIR__ . '/../controllers/AuthController.php';
 
 $auth = new AuthController();
-$auth->login();
+$auth->login(); // processa POST
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +14,10 @@ $auth->login();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - SpotiPobre</title>
 
+    <!-- CSS (mais seguro com __DIR na prática seria no PHP, mas aqui ok) -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
 
 <div class="container">
@@ -38,30 +40,12 @@ $auth->login();
     <?php endif; ?>
 
     <form method="POST">
-
-        <input
-            type="email"
-            name="email"
-            placeholder="Digite seu email"
-            required
-        >
-
-        <input
-            type="password"
-            name="senha"
-            placeholder="Digite sua senha"
-            required
-        >
-
-        <button type="submit">
-            Entrar
-        </button>
-
+        <input type="email" name="email" placeholder="Digite seu email" required>
+        <input type="password" name="senha" placeholder="Digite sua senha" required>
+        <button type="submit">Entrar</button>
     </form>
 
-    <a href="register.php">
-        Não possui conta? Cadastre-se
-    </a>
+    <a href="register.php">Não possui conta? Cadastre-se</a>
 
 </div>
 

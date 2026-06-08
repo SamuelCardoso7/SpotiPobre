@@ -8,7 +8,7 @@ class User
 
     public function __construct()
     {
-        $database = new database();
+        $database = new Database();
         $this->conn = $database->connect();
     }
 
@@ -16,33 +16,24 @@ class User
     {
         $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO usuarios(nome, email, senha)
-                VALUES (?, ?, ?)";
+        $sql = "INSERT INTO USUARIOS (NOME, EMAIL, SENHA) VALUES (?, ?, ?)";
 
         $stmt = $this->conn->prepare($sql);
-
-        $stmt->bind_param(
-            "sss",
-            $nome,
-            $email,
-            $senhaHash
-        );
+        $stmt->bind_param("sss", $nome, $email, $senhaHash);
 
         return $stmt->execute();
     }
 
     public function findByEmail($email)
     {
-        $sql = "SELECT * FROM usuarios WHERE email = ?";
+        $sql = "SELECT ID_USUARIO as id, NOME as nome, EMAIL as email, SENHA as senha 
+                FROM USUARIOS WHERE EMAIL = ?";
 
         $stmt = $this->conn->prepare($sql);
-
         $stmt->bind_param("s", $email);
-
         $stmt->execute();
 
         $result = $stmt->get_result();
-
         return $result->fetch_assoc();
     }
 }

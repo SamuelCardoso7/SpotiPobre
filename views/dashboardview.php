@@ -1,12 +1,11 @@
 <?php 
-session_start();
 require_once __DIR__ . '/../models/dashboardmodels.php';
+require_once __DIR__ . '/../models/avaliacaomodel.php';
 
 $model = new DashboardModel();
 $musicas = $model->listarMusicas();
 
-// Recupera avaliações da sessão
-$avaliacoes = isset($_SESSION['avaliacoes']) ? $_SESSION['avaliacoes'] : [];
+$avaliacaoModel = new AvaliacaoModel();
 ?>
 
 <!DOCTYPE html>
@@ -21,41 +20,48 @@ $avaliacoes = isset($_SESSION['avaliacoes']) ? $_SESSION['avaliacoes'] : [];
     <div class="container">
         <div class="header">
             <h1>SpotiPobre</h1>
+            
+            <!-- Botão Logout no header -->
+            <div style="position: absolute; top: 20px; right: 30px;">
+                <a href="login.php" style="text-decoration: none;">
+                    <button style="background: #dc3545; padding: 8px 16px; font-size: 14px;">Sair</button>
+                </a>
+            </div>
         </div>
 
-        <div style="padding: 30px;">
+        <div class="content">
             
             <!-- Botão Cadastrar Música -->
-            <div style="text-align: right; margin-bottom: 20px;">
+            <div style="text-align: right; margin-bottom: 25px;">
                 <a href="cadastrar_musica.php">
-                    <button style="padding: 12px 25px; font-size: 16px;">+ Cadastrar Música</button>
+                    <button>+ Cadastrar Música</button>
                 </a>
             </div>
 
             <h2>Músicas Disponíveis</h2>
 
             <?php foreach($musicas as $musica): 
-                $avals = array_filter($avaliacoes, fn($a) => $a['musica_id'] === $musica['id']);
+                $avals = $avaliacaoModel->listarAvaliacoesPorMusica($musica['ID_MUSICA']);
             ?>
-            <div class="card musica">
+            <div class="card">
                 <div>
-                    <h3><?= htmlspecialchars($musica['nome']) ?></h3>
-                    <p><?= htmlspecialchars($musica['artista']) ?></p>
+                    <h3><?= htmlspecialchars($musica['NOME']) ?></h3>
+                    <p><?= htmlspecialchars($musica['DESCRICAO'] ?? 'Sem descrição') ?></p>
                     
                     <?php if (count($avals) > 0): ?>
                         <strong>Avaliações recebidas:</strong><br>
                         <?php foreach($avals as $aval): ?>
-                            <small style="display:block; margin:8px 0; color:#555;">
-                                ⭐ <?= $aval['nota'] ?>/5 — <?= htmlspecialchars($aval['comentario']) ?> 
-                                <em>(<?= $aval['data'] ?>)</em>
-                            </small>
+                            <small>
+                                ⭐ <?= $aval['QTD_ESTRELAS'] ?>/5 — <?= htmlspecialchars($aval['DESCRICAO']) ?> 
+                                <em>(por <?= htmlspecialchars($aval['nome_usuario']) ?>)</em>
+                            </small><br>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <small style="color:#888;">Ainda não foi avaliada</small>
                     <?php endif; ?>
                 </div>
                 
-                <a href="avaliar.php?id=<?= $musica['id'] ?>">
+                <a href="avaliar.php?id=<?= $musica['ID_MUSICA'] ?>">
                     <button>Avaliar Música</button>
                 </a>
             </div>

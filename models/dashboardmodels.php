@@ -1,25 +1,26 @@
 <?php
 
+require_once __DIR__ . '/../config/database.php';
+
 class DashboardModel
 {
+    private $conn;
+
+    public function __construct()
+    {
+        $database = new Database();
+        $this->conn = $database->connect();
+    }
+
     public function listarMusicas()
     {
-        return [
-            [
-                "id" => 1,
-                "nome" => "Numb",
-                "artista" => "Linkin Park"
-            ],
-            [
-                "id" => 2,
-                "nome" => "Believer",
-                "artista" => "Imagine Dragons"
-            ],
-            [
-                "id" => 3,
-                "nome" => "The Emptiness Machine",
-                "artista" => "Linkin Park"
-            ]
-        ];
+        $sql = "SELECT * FROM musica ORDER BY nome";
+        $result = $this->conn->query($sql);
+        
+        $musicas = [];
+        while ($row = $result->fetch_assoc()) {
+            $musicas[] = $row;
+        }
+        return $musicas;
     }
 }
